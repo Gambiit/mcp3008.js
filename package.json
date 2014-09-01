@@ -1,0 +1,32 @@
+{
+  "name": "mcp3008",
+  "version": "0.0.1",
+  "description": "mcp3008 driver controller  A/D to raspberry pi by SPI bus",
+  "main": "mcp3008.js",
+  "dependencies": {
+    "spi": "0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gambiit/mcp3008.js.git"
+  },
+  "node-red": {
+    "nodes": {
+      "hardware": "nodes/core/hardware/37-mcp3008.js"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/Gambiit/mcp3008.js/issues"
+  },
+  "homepage": "https://github.com/Gambiit/mcp3008.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "adc",
+    "mcp3008",
+    "raspberry"
+  ],
+  "author": "gambiit",
+  "license": "ISC"
+}
