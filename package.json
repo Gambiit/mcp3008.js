@@ -4,7 +4,7 @@
   "description": "mcp3008 driver controller  A/D to raspberry pi by SPI bus",
   "main": "mcp3008.js",
   "dependencies": {
-    "spi": "0.1.0"
+    "spi": "0.1.1"
   },
   "repository": {
     "type": "git",
