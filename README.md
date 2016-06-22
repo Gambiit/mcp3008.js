@@ -4,7 +4,7 @@ Mcp3008 is 10bit adc converter with SPI interface. This node-red node allow to e
 
 ## Raspberry SPI interface
 
-See http://elinux.org howto activate SPI on raspberry (with raspbian OS).
+See http://elinux.org howto activate SPI on raspberry
 use MOSI MISO and SCLK gpio pins.
 select CE0 or CE1 with the edit node to adress two mcp3008.
 

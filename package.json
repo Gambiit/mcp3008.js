@@ -1,6 +1,6 @@
 {
   "name": "mcp3008",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "mcp3008 driver controller  A/D to raspberry pi by SPI bus",
   "main": "mcp3008.js",
   "dependencies": {
