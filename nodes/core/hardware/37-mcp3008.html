@@ -1,0 +1,95 @@
+<!--
+Copyright (C) 2014-2015-2016 Gambiit <stef@lesderniersdelaclasse.pw>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+-->
+
+<script type="text/x-red" data-template-name="mcp3008">
+   <!-- data-template-name identifies the node type this is for              -->
+
+   <!-- Each of the following divs creates a field in the edit dialog.       -->
+   <!-- Generally, there should be an input for each property of the node.   -->
+   <!-- The for and id attributes identify the corresponding property        -->
+   <!-- (with the 'node-input-' prefix).                                     -->
+   <!-- The available icon classes are defined in Twitter Bootstrap          -->
+    <div class="form-row">
+        <label for="node-input-device"><i class="icon-asterisk"></i> Device</label>
+        <select type="text" id="node-input-device" style="width: 150px;">
+          <option value="/dev/spidev0.0">0 - CE0</option>
+          <option value="/dev/spidev0.1">1 - CE1</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="icon-asterisk"></i> Mode</label>
+        <select type="text" id="node-input-mode" style="width: 150px;">
+          <option value=0x80>Sing - CH0</option>
+          <option value=0x90>Sing - CH1</option>
+          <option value=0xA0>Sing - CH2</option>
+          <option value=0xB0>Sing - CH3</option>
+          <option value=0xC0>Sing - CH4</option>
+          <option value=0xD0>Sing - CH5</option>
+          <option value=0xE0>Sing - CH6</option>
+          <option value=0xF0>Sing - CH7</option>
+          <option value=0x00>Diff CH0-CH1</option>
+          <option value=0x10>Diff CH1-CH0</option>
+          <option value=0x20>Diff CH2-CH3</option>
+          <option value=0x30>Diff CH3-CH2</option>
+          <option value=0x40>Diff CH4-CH5</option>
+          <option value=0x50>Diff CH5-CH4</option>
+          <option value=0x60>Diff CH6-CH7</option>
+          <option value=0x70>Diff CH7-CH6</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-interval"><i class="icon-asterisk"></i> Intervalle</label>
+        <input type="text" id="node-input-interval" placeholder="Interval">
+    </div>
+    <!-- By convention, most nodes have a 'name' property. The following div -->
+    <!-- provides the necessary field.                                       -->
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+
+<!-- Next, some simple help text is provided for the node.                   -->
+<script type="text/x-red" data-help-name="mcp3008">
+   <p>Permet la lecture à intervalle régulier (ou non) d un périphérique SPI</p>
+   <p>Outputs an object called <b>msg</b> containing <b>msg.topic</b> and
+   <b>msg.payload</b>. msg.payload is a String.</p>
+</script>
+
+<!-- Finally, the node type is registered along with all of its properties   -->
+<!-- The example below shows a small subset of the properties that can be set-->
+<script type="text/javascript">
+    RED.nodes.registerType('mcp3008',{
+        category: 'advanced-input',      // the palette category
+        color : "#2C75FF", // bleu élèctrique
+        defaults: {             // defines the editable properties of the node
+            name    : {value:""},   //  along with default values.
+            device : {value:"/dev/spidev0.0", required:true},
+            mode    : {value:"0x80",required:true},
+            interval: {value:"100",required:false,validate:RED.validators.number()}
+        },
+        inputs:1,                // set the number of inputs - only 0 or 1
+        outputs:1,               // set the number of outputs - 0 to n
+        icon: "arrow-in.png",    // set the icon (held in public/icons)
+        label: function() {      // sets the default label contents
+            return this.name||this.topic;
+        },
+        labelStyle: function() { // sets the class to apply to the label
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
